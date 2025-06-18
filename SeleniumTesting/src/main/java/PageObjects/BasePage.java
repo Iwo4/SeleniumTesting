@@ -43,4 +43,8 @@ public class BasePage {
             return false;
         }
     }
+
+    public String getText(By locator){
+        return driver.findElement(locator).getText();
+    }
 }

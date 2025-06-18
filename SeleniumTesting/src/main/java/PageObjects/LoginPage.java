@@ -30,21 +30,26 @@ public class LoginPage extends BasePage {
         driver.findElement(passwordFieldLocator).sendKeys(password);
     }
 
-    public void clickSignInButton(){
+    public void clickSignInButton() {
         driver.findElement(signInButtonLocator).click();
     }
 
-    public void performLogin(){
+    public void performLogin() {
         enterUsername();
         enterPassword();
         clickSignInButton();
     }
 
-    public void waitForWelcomePage(){
+    public void performSuccessfulLogin() {
+        visitLoginPage();
+        performLogin();
+    }
+
+    public void waitForWelcomePage() {
         waitForElement(welcomePageLocator);
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         WebElement message = waitForElement(errorMessageLocator);
         return message.getText();
     }

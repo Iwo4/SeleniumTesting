@@ -8,9 +8,8 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void testLoginFunctionality() {
-        loginPage.visitLoginPage();
-        loginPage.performLogin();
+    public void successfulLoginTest() {
+        loginPage.performSuccessfulLogin();
         loginPage.waitForWelcomePage();
         Assert.assertEquals(loginPage.getUrl(), "https://seedlang.com/reviews/home");
         Assert.assertTrue(mainPage.isLogoutButtonDisplayed());
