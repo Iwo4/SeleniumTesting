@@ -40,11 +40,6 @@ public class LoginPage extends BasePage {
         clickSignInButton();
     }
 
-    public void performSuccessfulLogin() {
-        visitLoginPage();
-        performLogin();
-    }
-
     public void waitForWelcomePage() {
         waitForElement(welcomePageLocator);
     }
@@ -52,5 +47,11 @@ public class LoginPage extends BasePage {
     public String getErrorMessage() {
         WebElement message = waitForElement(errorMessageLocator);
         return message.getText();
+    }
+
+    public void performSuccessfulLogin() {
+        visitLoginPage();
+        performLogin();
+        waitForWelcomePage();
     }
 }

@@ -36,6 +36,10 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public WebElement waitForElementClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     public boolean isDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();
