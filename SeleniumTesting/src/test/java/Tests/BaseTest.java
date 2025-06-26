@@ -2,6 +2,7 @@ package Tests;
 
 import PageObjects.LoginPage;
 import PageObjects.MainPage;
+import PageObjects.StoriesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,6 +13,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected MainPage mainPage;
+    protected StoriesPage storiesPage;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional("chrome") String browser) {
@@ -27,6 +29,7 @@ public class BaseTest {
         }
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
+        storiesPage = new StoriesPage(driver);
     }
 
 //    @AfterMethod(alwaysRun = true)
