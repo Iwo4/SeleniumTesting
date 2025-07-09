@@ -13,10 +13,14 @@ public class StoriesPage extends MainPage {
     private By thirdVocabTrainersLocator = By.xpath("(//div[@class='css-1gx2rap'])[6]");
     private By upperIntermediateSectionLocator = By.xpath("(//div[@class='css-1gx2rap'])[7]");
     private By fourthVocabTrainersLocator = By.xpath("(//div[@class='css-1gx2rap'])[8]");
-    private By greetingsStoryLocator = By.xpath("//a[@id='1ed89cd0-7d14-4e60-aa6e-d29df74659f1']");
+    public By greetingsStoryLocator = By.xpath("//a[@id='1ed89cd0-7d14-4e60-aa6e-d29df74659f1']");
     private By pricesStoryLocator = By.xpath("//a[@id='8ead5b7a-b929-4fb3-93bf-2c438102dccd']");
     private By lunchTimeStoryLocator = By.xpath("//a[@id='a7f49eb2-dbbf-4667-ac92-166131e815aa']");
     private By losingKeysStoryLocator = By.xpath("//a[@id='469f3bc3-8b06-4f70-a390-31b04a34e284']");
+    private By decksTabLocator = By.xpath("//div[text()='Decks']");
+    private By vocabTabLocator = By.xpath("(//div[text()='Vocab'])[2]");
+    private By grammarTabLocator = By.xpath("//div[text()='Grammar']");
+    private By greetingsStartDeckLocator = By.xpath("(//div[@class='css-1bnyyey'])[1]");
 
     public StoriesPage(WebDriver driver) {
         super(driver);
@@ -55,6 +59,19 @@ public class StoriesPage extends MainPage {
     public void openLosingKeyStory() {
         waitForElement(losingKeysStoryLocator);
         driver.findElement(losingKeysStoryLocator).click();
+    }
+
+    public void openStory(By element) {
+        waitForElement(element);
+        driver.findElement(element).click();
+    }
+
+    public boolean areGreetingDecksTabsWorking() {
+        waitForElement(decksTabLocator);
+        driver.findElement(vocabTabLocator).click();
+        driver.findElement(grammarTabLocator).click();
+        driver.findElement(decksTabLocator).click();
+        return isDisplayed(greetingsStartDeckLocator);
     }
 
 }

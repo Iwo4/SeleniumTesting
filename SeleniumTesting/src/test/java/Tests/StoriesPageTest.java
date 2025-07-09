@@ -21,4 +21,13 @@ public class StoriesPageTest extends BaseTest {
         storiesPage.openLosingKeyStory();
         Assert.assertEquals(storiesPage.getUrl(), "https://seedlang.com/topics/469f3bc3-8b06-4f70-a390-31b04a34e284");
     }
+
+    @Test
+    public void greetingsStoryTest() {
+        loginPage.performSuccessfulLogin();
+        storiesPage.openStoriesPage();
+        storiesPage.openStory(storiesPage.greetingsStoryLocator);
+        Assert.assertEquals(storiesPage.getUrl(), "https://seedlang.com/topics/1ed89cd0-7d14-4e60-aa6e-d29df74659f1");
+        Assert.assertTrue(storiesPage.areGreetingDecksTabsWorking());
+    }
 }
