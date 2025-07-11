@@ -51,4 +51,5 @@ public class BasePage {
     public String getText(By locator){
         return driver.findElement(locator).getText();
     }
+
 }

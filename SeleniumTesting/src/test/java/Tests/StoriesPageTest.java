@@ -30,4 +30,11 @@ public class StoriesPageTest extends BaseTest {
         Assert.assertEquals(storiesPage.getUrl(), "https://seedlang.com/topics/1ed89cd0-7d14-4e60-aa6e-d29df74659f1");
         Assert.assertTrue(storiesPage.areGreetingDecksTabsWorking());
     }
+
+    @Test
+    public void sectionExpandingTest() throws InterruptedException {
+        loginPage.performSuccessfulLogin();
+        storiesPage.openStoriesPage();
+        Assert.assertTrue(storiesPage.isInstructionDeckVisible());
+    }
 }

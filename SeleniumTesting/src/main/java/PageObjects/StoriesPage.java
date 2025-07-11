@@ -1,11 +1,13 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class StoriesPage extends MainPage {
     private By storiesLocator = By.xpath("(//div[@class='css-rf6n7v'])[1]");
-    private By foundationalSectionLocator = By.xpath("(//div[@class='css-1gx2rap'])[1]");
+    public By foundationalSectionLocator = By.xpath("//div[normalize-space(text())='Foundational']");
     private By firstVocabTrainersLocator = By.xpath("(//div[@class='css-1gx2rap'])[2]");
     private By earlyIntermediateSectionLocator = By.xpath("(//div[@class='css-1gx2rap'])[3]");
     private By secondVocabTrainersLocator = By.xpath("(//div[@class='css-1gx2rap'])[4]");
@@ -21,6 +23,7 @@ public class StoriesPage extends MainPage {
     private By vocabTabLocator = By.xpath("(//div[text()='Vocab'])[2]");
     private By grammarTabLocator = By.xpath("//div[text()='Grammar']");
     private By greetingsStartDeckLocator = By.xpath("(//div[@class='css-1bnyyey'])[1]");
+    private By introductionsDeckLocator = By.xpath("//div[text()='Introductions']");
 
     public StoriesPage(WebDriver driver) {
         super(driver);
@@ -72,6 +75,26 @@ public class StoriesPage extends MainPage {
         driver.findElement(grammarTabLocator).click();
         driver.findElement(decksTabLocator).click();
         return isDisplayed(greetingsStartDeckLocator);
+    }
+
+    public boolean isSectionOpen(By section) {
+        WebElement sectionElement = waitForElement(section);
+        try {
+            WebElement icon = sectionElement.findElement(By.tagName("i"));
+            String iconClass = icon.getAttribute("class");
+            return iconClass.contains("fa-minus"); // means section is open
+        } catch (NoSuchElementException e) {
+            System.out.println("Icon not found inside section.");
+            return false;
+        }
+    }
+
+    public boolean isInstructionDeckVisible() {
+        waitForElementClickable(foundationalSectionLocator);
+        if (!isSectionOpen(foundationalSectionLocator)) {
+            driver.findElement(foundationalSectionLocator).click();
+        }
+        return isDisplayed(introductionsDeckLocator);
     }
 
 }
