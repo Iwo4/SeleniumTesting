@@ -36,5 +36,14 @@ public class StoriesPageTest extends BaseTest {
         loginPage.performSuccessfulLogin();
         storiesPage.openStoriesPage();
         Assert.assertTrue(storiesPage.isInstructionDeckVisible());
+        Assert.assertTrue(storiesPage.isKitchenDeckVisible());
+    }
+
+    @Test
+    public void expandingAllSelectionsTest() {
+        loginPage.performSuccessfulLogin();
+        storiesPage.openStoriesPage();
+        storiesPage.expandAllSelections();
+        Assert.assertTrue(storiesPage.isKitchenDeckVisible());
     }
 }

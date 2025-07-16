@@ -24,6 +24,7 @@ public class StoriesPage extends MainPage {
     private By grammarTabLocator = By.xpath("//div[text()='Grammar']");
     private By greetingsStartDeckLocator = By.xpath("(//div[@class='css-1bnyyey'])[1]");
     private By introductionsDeckLocator = By.xpath("//div[text()='Introductions']");
+    private By kitchenDeckLocator = By.xpath("//div[normalize-space(text())='Kitchen']");
 
     public StoriesPage(WebDriver driver) {
         super(driver);
@@ -84,7 +85,6 @@ public class StoriesPage extends MainPage {
             String iconClass = icon.getAttribute("class");
             return iconClass.contains("fa-minus"); // means section is open
         } catch (NoSuchElementException e) {
-            System.out.println("Icon not found inside section.");
             return false;
         }
     }
@@ -95,6 +95,43 @@ public class StoriesPage extends MainPage {
             driver.findElement(foundationalSectionLocator).click();
         }
         return isDisplayed(introductionsDeckLocator);
+    }
+
+    public boolean isKitchenDeckVisible() {
+        waitForElementClickable(upperIntermediateSectionLocator);
+        if (!isSectionOpen(upperIntermediateSectionLocator)) {
+            driver.findElement(upperIntermediateSectionLocator).click();
+        }
+        return isDisplayed(kitchenDeckLocator);
+    }
+
+    public void expandAllSelections() {
+        waitForElementClickable(fourthVocabTrainersLocator);
+        if (!isSectionOpen(foundationalSectionLocator)) {
+            driver.findElement(foundationalSectionLocator).click();
+        }
+        if (!isSectionOpen(earlyIntermediateSectionLocator)) {
+            driver.findElement(earlyIntermediateSectionLocator).click();
+        }
+        if (!isSectionOpen(intermediateSectionLocator)) {
+            driver.findElement(intermediateSectionLocator).click();
+        }
+        if (!isSectionOpen(upperIntermediateSectionLocator)) {
+            driver.findElement(upperIntermediateSectionLocator).click();
+        }
+
+        if (!isSectionOpen(firstVocabTrainersLocator)) {
+            driver.findElement(firstVocabTrainersLocator).click();
+        }
+        if (!isSectionOpen(secondVocabTrainersLocator)) {
+            driver.findElement(secondVocabTrainersLocator).click();
+        }
+        if (!isSectionOpen(thirdVocabTrainersLocator)) {
+            driver.findElement(thirdVocabTrainersLocator).click();
+        }
+        if (!isSectionOpen(fourthVocabTrainersLocator)) {
+            driver.findElement(fourthVocabTrainersLocator).click();
+        }
     }
 
 }
